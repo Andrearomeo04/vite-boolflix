@@ -21,8 +21,13 @@ export default {
       }
         }
     },
+    computed: {
+        combinedList() {
+            return [store.movie_list, store.tv_series_list]
+        }
+    },
     methods: {
-    getMovies() {
+    getMoviesAndSeries() {
         const APY_KEY ='62a5a8d13fbd9a5c7dcb2201ded87f1c'
         axios.get(store.movie_api, {
             params: {
@@ -31,6 +36,15 @@ export default {
             }
         }).then((response) => {
             store.movie_list = response.data.results
+        })
+
+        axios.get(store.tv_series_api, {
+            params: {
+                api_key: APY_KEY,
+                query: this.searchQuery
+            }
+        }).then((response) => {
+            store.tv_series_list = response.data.results
         })
     }
   }
@@ -43,13 +57,13 @@ export default {
             <div class="container-fluid">
                 <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" v-model="searchQuery" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit" @click.prevent="getMovies">Search</button>
+                <button class="btn btn-outline-success" type="submit" @click.prevent="getMoviesAndSeries">Search</button>
                 </form>
             </div>
         </nav>
         <div class="container">
             <div class="row">
-                <div class="col-3 border-black">
+                <div class="col-3 border border-black">
                     <ul>
                         <li v-for="movie in store.movie_list" :key="movie.id">
                             <h1>{{ movie.title }}</h1>
@@ -70,5 +84,5 @@ export default {
 
 
 <style lang="scss" scoped>
-    
+@use '../styles/generals.scss'
 </style>
