@@ -4,7 +4,8 @@ import AppSearch from './components/AppSearch.vue'
 export default {
   components: {
     AppSearch
-  }
+  },
+  
 }
 </script>
 
