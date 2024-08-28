@@ -1,11 +1,24 @@
 <script>
 import axios from 'axios';
 import { store } from '../store.js';
+import 'flag-icons/css/flag-icons.min.css';
 export default {
     data () {
         return {
             store,
-            searchQuery: ''
+            searchQuery: '',
+            languageFlag: {
+                en: 'gb',
+                it: 'it',
+                fr: 'fr',
+                es: 'es',
+                ko: 'kr',
+                zh: 'cn',
+                fi: 'fi',
+                pt: 'pt',
+                ja: 'jp',
+                ru: 'ru',
+      }
         }
     },
     methods: {
@@ -41,7 +54,11 @@ export default {
                         <li v-for="movie in store.movie_list" :key="movie.id">
                             <h1>{{ movie.title }}</h1>
                             <h2>{{ movie.original_title }}</h2>
-                            <p>{{ movie.original_language }}</p>
+                            <p>
+                                <span v-if="languageFlag[movie.original_language]" 
+                                :class="`fi fi-${languageFlag[movie.original_language]}`"></span>
+                                <span v-else>{{ movie.original_language }}</span>
+                            </p>
                             <p>{{ movie.vote_average }}</p>
                         </li>
                     </ul>
