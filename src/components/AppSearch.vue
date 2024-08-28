@@ -23,7 +23,7 @@ export default {
     },
     computed: {
         combinedList() {
-            return [store.movie_list, store.tv_series_list]
+            return [...store.movie_list, ...store.tv_series_list]
         }
     },
     methods: {
@@ -65,15 +65,15 @@ export default {
             <div class="row">
                 <div class="col-3 border border-black">
                     <ul>
-                        <li v-for="movie in store.movie_list" :key="movie.id">
-                            <h1>{{ movie.title }}</h1>
-                            <h2>{{ movie.original_title }}</h2>
+                        <li v-for="item in combinedList" :key="item.id">
+                            <h1>{{ item.title || item.name}}</h1>
+                            <h2>{{ item.original_title || item.original_name}}</h2>
                             <p>
-                                <span v-if="languageFlag[movie.original_language]" 
-                                :class="`fi fi-${languageFlag[movie.original_language]}`"></span>
-                                <span v-else>{{ movie.original_language }}</span>
+                                <span v-if="languageFlag[item.original_language]" 
+                                :class="`fi fi-${languageFlag[item.original_language]}`"></span>
+                                <span v-else>{{ item.original_language }}</span>
                             </p>
-                            <p>{{ movie.vote_average }}</p>
+                            <p>{{ item.vote_average }}</p>
                         </li>
                     </ul>
                 </div>
