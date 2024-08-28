@@ -79,7 +79,7 @@ export default {
                                 <span v-else>{{ item.original_language }}</span>
                             </p>
                             <p>{{ item.vote_average }}</p>
-                            <img :src="getUrl(item.poster_path)" :alt="item.title || item.name">
+                            <img :src="item.poster_path ? getUrl(item.poster_path) : 'https://placehold.co/342x513?text=Unavailable+Image&font=roboto'" :alt="item.title || item.name">
                         </li>
                     </ul>
                 </div>

@@ -1,9 +1,9 @@
 <script>
-import AppSearch from './components/AppSearch.vue'
+import AppHeader from './components/AppSearch.vue'
 
 export default {
   components: {
-    AppSearch
+    AppHeader
   },
   
 }
@@ -11,7 +11,7 @@ export default {
 
 <template>
   <div>
-    <AppSearch />
+    <AppHeader />
   </div>
 </template>
 
