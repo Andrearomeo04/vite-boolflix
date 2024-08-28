@@ -5,6 +5,7 @@ export default {
     data () {
         return {
             store,
+            searchQuery: ''
         }
     },
     methods: {
@@ -15,8 +16,8 @@ export default {
                 api_key: APY_KEY,
                 query: this.searchQuery
             }
-        }).then(response => {
-            this.response.data.results
+        }).then((response) => {
+            store.movie_list = response.data.results
         })
     }
   }
@@ -29,10 +30,24 @@ export default {
             <div class="container-fluid">
                 <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" v-model="searchQuery" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <button class="btn btn-outline-success" type="submit" @click.prevent="getMovies">Search</button>
                 </form>
             </div>
         </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-3 border-black">
+                    <ul>
+                        <li v-for="movie in store.movie_list" :key="movie.id">
+                            <h1>{{ movie.title }}</h1>
+                            <h2>{{ movie.original_title }}</h2>
+                            <p>{{ movie.original_language }}</p>
+                            <p>{{ movie.vote_average }}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
