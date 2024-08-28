@@ -18,7 +18,9 @@ export default {
                 pt: 'pt',
                 ja: 'jp',
                 ru: 'ru',
-      }
+            },
+            imageUrl:'https://image.tmdb.org/t/p/',
+            imageSize:'w342'
         }
     },
     computed: {
@@ -46,6 +48,9 @@ export default {
         }).then((response) => {
             store.tv_series_list = response.data.results
         })
+    },
+    getUrl(posterPath) {
+        return posterPath ? `${this.imageUrl}${this.imageSize}${posterPath}` : '';
     }
   }
 }
@@ -74,6 +79,7 @@ export default {
                                 <span v-else>{{ item.original_language }}</span>
                             </p>
                             <p>{{ item.vote_average }}</p>
+                            <img :src="getUrl(item.poster_path)" :alt="item.title || item.name">
                         </li>
                     </ul>
                 </div>
