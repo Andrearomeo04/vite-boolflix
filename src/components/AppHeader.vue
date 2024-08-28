@@ -2,20 +2,26 @@
 import AppSearch from './AppSearch.vue';
 
 export default {
-    data () {
-        return {
-            AppSearch
+        components: {
+            AppSearch,
         }
-    }
 }
 </script>
 
-<template lang="">
+<template>
     <div>
-        <AppSearch />
+        <div class="bg-black">
+            <div class="container">
+                <div class="row ">
+                    <div class="d-flex justify-content-end">
+                        <AppSearch />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
-<style lang="">
-    
+<style lang="scss" scoped>
+
 </style>

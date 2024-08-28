@@ -1,5 +1,5 @@
 <script>
-import AppHeader from './components/AppSearch.vue'
+import AppHeader from './components/AppHeader.vue'
 
 export default {
   components: {
@@ -11,10 +11,12 @@ export default {
 
 <template>
   <div>
-    <AppHeader />
+    <header>
+      <AppHeader />
+    </header>
   </div>
 </template>
 
 <style lang="scss">
-
+@use './styles/generals.scss';
 </style>

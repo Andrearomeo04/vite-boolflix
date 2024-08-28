@@ -61,18 +61,16 @@ export default {
 
 <template>
     <div>
-        <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
                 <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" v-model="searchQuery" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit" @click.prevent="getMoviesAndSeries">Search</button>
+                <input class="form-control me-2 mt-3" type="search" placeholder="Search" v-model="searchQuery" aria-label="Search">
+                <button class="btn btn-outline-success mt-3" type="submit" @click.prevent="getMoviesAndSeries">Search</button>
                 </form>
             </div>
-        </nav>
         <div class="container">
             <div class="row">
                 <div class="col-3 border border-black">
-                    <ul>
+                    <ul class="list-unstyled">
                         <li v-for="item in combinedList" :key="item.id">
                             <h1>{{ item.title || item.name}}</h1>
                             <h2>{{ item.original_title || item.original_name}}</h2>
@@ -98,5 +96,6 @@ export default {
 
 
 <style lang="scss" scoped>
-@use '../styles/generals.scss'
+
+
 </style>
