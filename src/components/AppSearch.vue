@@ -51,6 +51,9 @@ export default {
     },
     getUrl(posterPath) {
         return posterPath ? `${this.imageUrl}${this.imageSize}${posterPath}` : '';
+    },
+    stars(vote) {
+        return Math.ceil(vote / 2)
     }
   }
 }
@@ -78,7 +81,12 @@ export default {
                                 :class="`fi fi-${languageFlag[item.original_language]}`"></span>
                                 <span v-else>{{ item.original_language }}</span>
                             </p>
-                            <p>{{ item.vote_average }}</p>
+                            <p>
+                                <span v-for="n in 5" :key="n">
+                                    <i v-if="n <= stars(item.vote_average)" class="fas fa-star"></i>
+                                    <i v-else class="far fa-star"></i>
+                                </span>
+                            </p>
                             <img :src="item.poster_path ? getUrl(item.poster_path) : 'https://placehold.co/342x513?text=Unavailable+Image&font=roboto'" :alt="item.title || item.name">
                         </li>
                     </ul>
